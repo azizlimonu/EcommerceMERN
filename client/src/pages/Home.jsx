@@ -1,17 +1,24 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addToCart } from '../features/reducer/cartSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { items: data, status } = useSelector((state) => state.products);
+  // const cart = useSelector((state) => state.cart);
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-  }
+    navigate('/cart');
+    // console.log("data",data);
+  };
+
+  // useEffect(() => {
+    // dispatch(getTotals());
+  // }, [cart, dispatch]);
 
   return (
     <div className='home-container'>
