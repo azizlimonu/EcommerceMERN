@@ -3,7 +3,11 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const product = require('./product');
+
 // Impor Routes
+const register = require('./routes/registerRoutes');
+const login = require('./routes/loginRoutes');
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -15,7 +19,7 @@ const connectDB = async () => {
   try {
     await mongoose.connect(uri);
   } catch (error) {
-    console.log("coonect mongodb failed ",error);
+    console.log("coonect mongodb failed ", error);
   }
 }
 connectDB();
@@ -25,7 +29,7 @@ mongoose.connection.once('open', () => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 });
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
   res.send("Check Conected to db...");
 });
 
@@ -34,3 +38,5 @@ app.get("/products", (req, res) => {
 });
 
 // Usage Routes
+app.use('/api/register', register);
+app.use('/api/login', login);
