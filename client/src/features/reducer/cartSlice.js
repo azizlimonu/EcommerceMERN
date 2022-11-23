@@ -26,6 +26,7 @@ const cartSlice = createSlice({
         let tempProductItem = { ...action.payload, cartQuantity: 1 }
         state.cartItems.push(tempProductItem);
       };
+      console.log("added to cart")
       // set to the local storage
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
