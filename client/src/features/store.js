@@ -6,15 +6,15 @@ import { productsApi } from './reducer/getProductApi'
 
 export const store = configureStore({
   reducer: {
+    auth:authReducer,
     cart: cartReducer,
     products: productReducer,
-    auth:authReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productsApi.middleware),
 });
 
+store.dispatch(loadUser());
 store.dispatch(fetchProduct());
 store.dispatch(getTotals());
-store.dispatch(loadUser());

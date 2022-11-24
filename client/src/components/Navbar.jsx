@@ -1,26 +1,26 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { logoutUser } from '../features/reducer/authSlice';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../features/reducer/authSlice";
+import { toast } from "react-toastify";
 
-const Navbar = () => {
-  const dispatch = useDispatch();
+const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logoutUser(null));
-    toast.warning("Logged Out", { position: 'bottom-right' });
+    toast.warning("Logged out!", { position: "bottom-left" });
+    navigate('/login');
   }
 
   return (
-    <div className='nav-bar'>
-      <Link to='/'>
-        <h2>Sneaker Shop</h2>
+    <nav className="nav-bar">
+      <Link to="/">
+        <h2>OnlineShop</h2>
       </Link>
-      <Link to='/cart' >
+      <Link to="/cart">
         <div className="nav-bag">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,31 +37,28 @@ const Navbar = () => {
           </span>
         </div>
       </Link>
-
-      {auth._id
-        ? (
-          <div className='nav_auth'>
-            {auth.isAdmin
-              ? (
-                <div className='nav_auth_child'>
-                  <Link to='/admin/summary'>Admin</Link>
-                </div>
-              ) : null}
-            <p>Hi, {auth.name.toUpperCase()}</p>
-            <div className='nav_auth_child' onClick={handleLogout}>
-              Logout
+      {auth._id ? (
+        <div className="nav_auth">
+          {auth.isAdmin ? (
+            <div className="nav_auth_child">
+              <Link to="/admin/summary">Admin</Link>
             </div>
+          ) : null}
+          <div
+            className="nav_auth_child"
+            onClick={handleLogout}
+          >
+            Logout
           </div>
-        ) : (
-          <div className='authLinks'>
-            <Link to='/login'>Login</Link>
-            <Link to='/register'>Register</Link>
-          </div>
-        )
-      }
+        </div>
+      ) : (
+        <div className="authLinks">
+          <Link to="/login">Login</Link>
+          <Link to="register">Register</Link>
+        </div>
+      )}
+    </nav>
+  );
+};
 
-    </div>
-  )
-}
-
-export default Navbar;
+export default NavBar;
