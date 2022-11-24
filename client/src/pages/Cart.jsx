@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -11,14 +11,14 @@ import {
 
 
 import { Link } from "react-router-dom";
+import PayButton from "../components/PayButton";
 // import PayButton from "./PayButton";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  // const auth = useSelector((state) => state.auth);
-  console.log(cart);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTotals());
@@ -108,7 +108,8 @@ const Cart = () => {
                 <span className="amount">${cart.cartTotalAmount}</span>
               </div>
               <p>Taxes and shipping calculated at checkout</p>
-              {/* {auth._id ? (
+              
+              {auth._id ? (
                 <PayButton cartItems={cart.cartItems} />
               ) : (
                 <button
@@ -117,7 +118,7 @@ const Cart = () => {
                 >
                   Login to Check out
                 </button>
-              )} */}
+              )}
 
               <div className="continue-shopping">
                 <Link to="/">
