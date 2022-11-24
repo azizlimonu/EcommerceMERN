@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 import Navbar from './components/Navbar';
 
@@ -20,8 +22,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
           {/* <Route path='/checkout-success' element={<CheckoutSuccess />} /> */}
-          {/* <Route path='/register' element={<Register />} /> */}
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path='/register' element={<Register />} />
+          <Route path="/login" element={<Login />} />
           {/* <Route path="/admin" element={<Dashboard />}> */}
           {/* <Route path="summary" element={<Summary />} /> */}
           {/* <Route path="products" element={<Products />}> */}

@@ -8,8 +8,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { items: data, status } = useSelector((state) => state.products);
-  // const cart = useSelector((state) => state.cart);
-
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
+  
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     navigate('/cart');
@@ -17,7 +18,7 @@ const Home = () => {
   };
 
   // useEffect(() => {
-    // dispatch(getTotals());
+  // dispatch(getTotals());
   // }, [cart, dispatch]);
 
   return (
