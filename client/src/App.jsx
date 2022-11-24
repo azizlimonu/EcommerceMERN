@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 
 import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 
@@ -20,7 +21,14 @@ function App() {
       <div className="content-container">
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/cart' element={<Cart />} />
+          <Route
+            path='/cart'
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
           <Route path='/register' element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />

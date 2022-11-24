@@ -39,6 +39,7 @@ const Login = () => {
         <input
           type="password"
           placeholder="password"
+          autoComplete="on"
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
         <button>
