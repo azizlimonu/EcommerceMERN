@@ -66,6 +66,19 @@
   margin-left: 5px;
 }
 
+.nav_auth {
+  color: white;
+  display: flex;
+}
+
+.nav_auth .nav_auth_child {
+  cursor: pointer;
+}
+
+.nav_auth .nav_auth_child:last-child {
+  margin-left: 2rem;
+}
+
 .authLinks a:last-child {
   margin-left: 2rem;
 }
@@ -102,19 +115,19 @@
   margin-bottom: 1rem;
 }
 
-.formcontainer input:focus{
+.formcontainer input:focus {
   border: 1px solid rgb(0, 208, 255);
 }
 
-.formcontainer button{
+.formcontainer button {
   cursor: pointer;
 }
 
-.formcontainer button:focus{
+.formcontainer button:focus {
   border: none;
 }
 
-.formcontainer p{
+.formcontainer p {
   font-size: 14px;
   color: red;
 }

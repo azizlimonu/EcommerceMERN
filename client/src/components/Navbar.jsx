@@ -1,12 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { logoutUser } from '../features/reducer/authSlice';
 
 const Navbar = () => {
-  // const dispatch=useDispatch();
-  const {cartTotalQuantity} = useSelector((state)=>state.cart);
-  
+  const dispatch = useDispatch();
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logoutUser(null));
+    toast.warning("Logged Out", { position: 'bottom-right' });
+  }
+
   return (
     <div className='nav-bar'>
       <Link to='/'>
@@ -30,11 +38,28 @@ const Navbar = () => {
         </div>
       </Link>
 
-      {/* This section for check if theres admin users but added soon */}
-      <div className='authLinks'>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Register</Link>
-      </div>
+      {auth._id
+        ? (
+          <div className='nav_auth'>
+            {auth.isAdmin
+              ? (
+                <div className='nav_auth_child'>
+                  <Link to='/admin/summary'>Admin</Link>
+                </div>
+              ) : null}
+            <p>Hi, {auth.name.toUpperCase()}</p>
+            <div className='nav_auth_child' onClick={handleLogout}>
+              Logout
+            </div>
+          </div>
+        ) : (
+          <div className='authLinks'>
+            <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
+          </div>
+        )
+      }
+
     </div>
   )
 }
