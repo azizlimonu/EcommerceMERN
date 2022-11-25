@@ -25,6 +25,42 @@
   font-size: 20px;
 }
 
+/* admin pages */
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.side_nav {
+  border-right: 1px solid gray;
+  height: calc(100vh-70px);
+  position: fixed;
+  overflow-y: auto;
+  width: 200px;
+  flex-direction: column;
+  padding: 2rem;
+  display: flex;
+}
+
+.side_nav h3 {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+
+.side_nav a {
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.content_admin {
+  margin-left: 200px;
+  padding: 2rem 3rem;
+  width: 100%;
+}
+
 /* NavBar */
 
 .nav-bar {
@@ -83,7 +119,7 @@
   margin-left: 2rem;
 }
 
-.success-container{
+.success-container {
   min-height: 80vh;
   max-width: 800px;
   width: 100%;
@@ -94,10 +130,11 @@
   justify-content: center;
 }
 
-.success-container h2{
+.success-container h2 {
   margin-bottom: 0.5rem;
   color: #029e02;
 }
+
 
 .Links {
   color: white;

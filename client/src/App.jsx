@@ -11,6 +11,12 @@ import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import CheckoutSuccess from './components/CheckoutSuccess';
+import Dashboard from './components/Admin/Dashboard';
+import Summary from './components/Admin/Summary';
+import Products from './components/Admin/Products';
+import CreateProduct from './components/Admin/CreateProduct';
+import Users from './components/Admin/Users';
+import Orders from './components/Admin/Orders';
 
 function App() {
 
@@ -38,6 +44,15 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path='/admin' element={<Dashboard />}>
+            <Route path='summary' element={<Summary />} />
+            <Route path='products' element={<Products />}>
+              <Route path='create-products' element={<CreateProduct />} />
+            </Route>
+            <Route path='users' element={<Users />} />
+            <Route path='orders' element={<Orders />} />
+
+          </Route>
           <Route path='/register' element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
