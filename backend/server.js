@@ -4,9 +4,11 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const product = require('./product');
 
+
 // Impor Routes
 const register = require('./routes/registerRoutes');
 const login = require('./routes/loginRoutes');
+const stripe = require('./routes/stripeRoutes');
 
 const app = express();
 app.use(express.json());
@@ -40,3 +42,4 @@ app.get("/products", (req, res) => {
 // Usage Routes
 app.use('/api/register', register);
 app.use('/api/login', login);
+app.use('/api/stripe', stripe);

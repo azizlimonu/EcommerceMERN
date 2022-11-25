@@ -1,9 +1,22 @@
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { url } from '../features/reducer/apiSlice';
+
 const PayButton = ({ cartItems }) => {
+  const user = useSelector((state) => state.auth);
 
   const handleCheckout = () => {
-    // soon added axios post method for stripe
-    console.log("checkout triggered");
-    console.log("cartItems", cartItems);
+    axios
+      .post(`${url}/api/stripe/create-checkout-session`, {
+        cartItems,
+        userId: user._id
+      })
+      .then((response) => {
+        if (response.data.url) {
+          window.location.href = response.data.url;
+        }
+      })
+      .catch((error) => console.log(error));
   }
 
   return (

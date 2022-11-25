@@ -10,6 +10,7 @@ import Login from './pages/Login';
 
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import CheckoutSuccess from './components/CheckoutSuccess';
 
 function App() {
 
@@ -26,6 +27,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/checkout-success'
+            element={
+              <ProtectedRoute>
+                <CheckoutSuccess />
               </ProtectedRoute>
             }
           />
