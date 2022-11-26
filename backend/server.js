@@ -9,6 +9,7 @@ const product = require('./product');
 const register = require('./routes/registerRoutes');
 const login = require('./routes/loginRoutes');
 const stripe = require('./routes/stripeRoutes');
+const productsRoute = require('./routes/productRoutes');
 
 const app = express();
 app.use(express.json());
@@ -43,3 +44,4 @@ app.get("/products", (req, res) => {
 app.use('/api/register', register);
 app.use('/api/login', login);
 app.use('/api/stripe', stripe);
+app.use('/api/product', productsRoute);

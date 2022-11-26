@@ -23,19 +23,34 @@ router.post('/', async (req, res) => {
           image: uploadResponse,
         });
         const savedProduct = await product.save();
-        res.status(200).send(savedProduct);
+        res.status(200).json(savedProduct);
       }
     }
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
   }
-
-})
-
+});
 
 // Delete Product
+router.delete('/:id',async(req,res)=>{
+  try {
+    res.status(200).json()
+  } catch (error) {
+    res.status(500).json(error)
+  }
+});
+
 // Get All Product
+router.get('/',async(req,res)=>{
+  try {
+    const product= await Product.findById(req.params.id);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 // Get Product
 // Update Product
 
