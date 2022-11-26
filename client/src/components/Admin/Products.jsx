@@ -1,10 +1,17 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const Products = () => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <div>This is Products page</div>
+      <div className='admin_headers'>
+        <h2>Products</h2>
+        <button onClick={() => navigate('/admin/products/create-products')}>
+          Create
+        </button>
+      </div>
       <Outlet />
     </>
   )
