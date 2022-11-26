@@ -10,14 +10,26 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
 
+  // console.log(productImage);
+  const TransformFile = (file) => {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setProductImage(reader.result);
+      };
+    } else {
+      setProductImage("");
+    }
+  }
+
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     console.log(file);
-    // transform the file
     setProductImage(file);
-  }
 
-  // Create transform file data
+    TransformFile(file);
+  }
 
   const handleSUbmit = (e) => {
     e.preventDefault();
@@ -69,7 +81,13 @@ const CreateProduct = () => {
       </form>
 
       <div className='image_preview'>
-        <p>Product image upload preview</p>
+        {productImage ? (
+          <>
+
+          </>
+        ) : (
+          <p>Product image preview</p>
+        )}
       </div>
     </div>
   )
