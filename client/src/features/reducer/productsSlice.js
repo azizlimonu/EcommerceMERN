@@ -12,7 +12,7 @@ export const productsFetch = createAsyncThunk("products/productsFetch",
   async () => {
     try {
       const response = await axios.get(`${url}/api/products`);
-      return response.data;
+      return response.data
     } catch (error) {
       console.log(error);
     }
@@ -40,20 +40,22 @@ const productsSlice = createSlice({
       state.status = "pending";
     },
     [productsFetch.fulfilled]: (state, action) => {
-      state.status = "fullfilled";
+      state.items = action.payload;
+      state.status = "success";
     },
     [productsFetch.rejected]: (state, action) => {
       state.status = "rejected";
     },
     // create Products
     [productsCreate.pending]: (state, action) => {
-      state.status = "pending";
+      state.createStatus = "pending";
     },
     [productsCreate.fulfilled]: (state, action) => {
-      state.status = "fullfilled";
+      state.items.push(action.payload);
+      state.createStatus = "success";
     },
     [productsCreate.rejected]: (state, action) => {
-      state.status = "rejected";
+      state.createStatus = "rejected";
     },
   }
 });

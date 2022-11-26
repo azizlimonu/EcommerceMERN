@@ -8,6 +8,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { items: data, status } = useSelector((state) => state.products);
+  const dataproducts = useSelector((state) => state.products);
+  console.log("data product",dataproducts);
+
   const auth = useSelector((state) => state.auth);
   // console.log(auth);
 
@@ -32,9 +35,9 @@ const Home = () => {
         <>
           <div className='products'>
             {data?.map((product) => (
-              <div key={product.id} className='product'>
+              <div key={product._id} className='product'>
                 <h3>{product.name}</h3>
-                <img src={product.image} alt={product.name} />
+                <img src={product.image.url} alt={product.name} />
                 <div className="details">
                   <span>{product.desc}</span>
                   <span className="price">${product.price}</span>

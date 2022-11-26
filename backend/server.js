@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const product = require('./product');
-
 
 // Impor Routes
 const register = require('./routes/registerRoutes');
@@ -36,12 +34,8 @@ app.get('/', (req, res) => {
   res.send("Check Conected to db...");
 });
 
-app.get("/products", (req, res) => {
-  res.send(product);
-});
-
 // Usage Routes
 app.use('/api/register', register);
 app.use('/api/login', login);
 app.use('/api/stripe', stripe);
-app.use('/api/product', productsRoute);
+app.use('/api/products', productsRoute);

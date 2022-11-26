@@ -5,7 +5,8 @@ const router = require('express').Router();
 
 // Create Product
 router.post('/', async (req, res) => {
-  const { name, product, desc, price, image } = req.body;
+  // console.log(req.body);
+  const { name, products, desc, price, image } = req.body;
 
   // upload image to cloudinary
   try {
@@ -17,7 +18,7 @@ router.post('/', async (req, res) => {
       if (uploadResponse) {
         const product = new Product({
           name,
-          product,
+          products,
           price,
           desc,
           image: uploadResponse,
@@ -33,7 +34,7 @@ router.post('/', async (req, res) => {
 });
 
 // Delete Product
-router.delete('/:id',async(req,res)=>{
+router.delete('/:id', async (req, res) => {
   try {
     res.status(200).json()
   } catch (error) {
@@ -42,9 +43,27 @@ router.delete('/:id',async(req,res)=>{
 });
 
 // Get All Product
-router.get('/',async(req,res)=>{
+router.get('/', async (req, res) => {
+  const qProduct = req.query.product;
   try {
-    const product= await Product.findById(req.params.id);
+    let products;
+    if (qProduct) {
+      products = await Product.find({
+        products: qProduct,
+      });
+    } else {
+      products = await Product.find();
+    }
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
+// Get SPESIFIC Product
+router.get('/find/:id', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json(error);
