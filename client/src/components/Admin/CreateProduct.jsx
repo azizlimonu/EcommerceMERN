@@ -37,12 +37,12 @@ const CreateProduct = () => {
         />
 
         <select onChange={(e) => setProduct(e.target.value)} required>
-          <option>Select Product</option>
-          <option value='shoes'>Select Product</option>
-          <option value='fashion'>Select Product</option>
-          <option value='furniture'>Select Product</option>
-          <option value='health'>Select Product</option>
-          <option value='other'>Select Product</option>
+          <option value=''>Select Product</option>
+          <option value='shoes'>Shoes</option>
+          <option value='fashion'>Fashion</option>
+          <option value='furniture'>Furniture</option>
+          <option value='health'>Health</option>
+          <option value='other'>Other</option>
         </select>
 
         <input
@@ -69,7 +69,7 @@ const CreateProduct = () => {
       </form>
 
       <div className='image_preview'>
-    
+        <p>Product image upload preview</p>
       </div>
     </div>
   )
